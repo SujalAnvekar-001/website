@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color:white;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        .login-box {
+            background: #000;
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            width: 300px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        .login-box img {
+            width: 80px;
+            margin-bottom: 20px;
+        }
+        .input-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .input-container input {
+            width: 40px;
+            height: 40px;
+            font-size: 24px;
+            text-align: center;
+            border: none;
+            border-radius: 10px;
+            background: #333;
+            color: white;
+        }
+        .enter-btn {
+            background: #444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight:bold;
+        }
+        .enter-btn:hover {
+            background: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <img src="saruslogo.jpg" alt="Company Logo">
+        <div class="input-container">
+            <input type="password" maxlength="1" class="pin-input" required>
+            <input type="password" maxlength="1" class="pin-input" required>
+            <input type="password" maxlength="1" class="pin-input" required>
+            <input type="password" maxlength="1" class="pin-input" required>
+        </div>
+        <button class="enter-btn" onclick="validatePassword()">ENTER</button>
+    </div>
+    <script>
+        function validatePassword() {
+            let inputs = document.querySelectorAll('.pin-input');
+            let enteredPin = '';
+            inputs.forEach(input => enteredPin += input.value);
+            if (enteredPin === '1234') {
+                window.location.href = 'main.html';
+            } else {
+                alert('Incorrect password!');
+                inputs.forEach(input => input.value = '');
+                inputs[0].focus();
+            }
+        }
+        document.querySelectorAll('.pin-input').forEach((input, index, inputs) => {
+            input.addEventListener('input', (e) => {
+                if (e.target.value && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
